@@ -1,12 +1,14 @@
 import React, { Component } from 'react'
 import Faker from 'faker'
 
+import IntegerInput from './IntegerInput'
 
 class CharacterGenerator extends Component{
     constructor(props){
         super(props)
         this.state = {
             characters: [],
+            number: '',
             naturalHColor: false,
             naturalEColor: false
         }
@@ -38,7 +40,7 @@ class CharacterGenerator extends Component{
         e.preventDefault()
         this.reset()
        
-        for (let i = 0; i < 5; i++) {
+        for (let i = 0; i < this.state.number; i++) {
             const character = {
               firstName: Faker.name.firstName(), 
               lastName: Faker.name.lastName(), 
@@ -62,10 +64,8 @@ class CharacterGenerator extends Component{
             this.setState({
                 naturalHColor: !event.target.value
             });
-        }
-        
+        } 
       }
-
 
       handleEyeInputChange(event) {
         if(!this.state.naturalEColor){
@@ -79,6 +79,13 @@ class CharacterGenerator extends Component{
         }
       }
 
+      handleNumChange(event){
+          console.log(event.target.value)
+          this.setState({
+              number: event.taget.value
+          })
+      }
+
 
     generateRandomNaturalHairColor(){
 
@@ -89,12 +96,11 @@ class CharacterGenerator extends Component{
                  100: 'red'
        }
      
-    //    let number =  Math.floor(Math.random() * 100) + 1 
-    let number = 100
+        let number =  Math.floor(Math.random() * 100) + 1 
+
        let keys;
        for (keys in naturalHairColors){
          if (number <= keys){
-             console.log(keys, number)
            return naturalHairColors[keys]
          }
        }
@@ -124,7 +130,7 @@ class CharacterGenerator extends Component{
     renderCharacters(character){
         return (
             <div style={{border: 'solid 1px #ee'}}>
-                <p>{`${character.firstName}` + ` ` + `${character.lastName}` }</p>
+                <p>{`${character.firstName} ${character.lastName}` }</p>
                 <ul>
                     <li>{`eye color:` + ` ` +  `${character.eyeColor}`}</li>
                     <li>{`hair color:` + ` ` +  `${character.hairColor}`}</li>
@@ -138,6 +144,9 @@ class CharacterGenerator extends Component{
         return(
             <div>
                 <form onSubmit={this.handleSubmit}>
+                    <label>Number of characters
+                        <IntegerInput value={ this.state.number } min={1} max={20} onChange={ (e) => this.handleNumChange(e) }/>
+                    </label>
                     <label>Use natural hair color
                         <input 
                         name="naturalHColor"
