@@ -8,7 +8,8 @@ class CharacterGenerator extends Component{
         this.state = {
             characters: [],
             naturalHColor: false,
-            naturalEColor: false
+            naturalEColor: false,
+            age: ''
         }
     }
 
@@ -18,7 +19,8 @@ class CharacterGenerator extends Component{
               firstName: Faker.name.firstName(), 
               lastName: Faker.name.lastName(), 
               eyeColor: Faker.commerce.color(),
-              hairColor: Faker.commerce.color()
+              hairColor: Faker.commerce.color(), 
+              age: this.generateRandomAge()
             }
           
             
@@ -43,7 +45,8 @@ class CharacterGenerator extends Component{
               firstName: Faker.name.firstName(), 
               lastName: Faker.name.lastName(), 
               eyeColor: this.state.naturalEColor ? this.generateRandomNaturalEyeColor() : Faker.commerce.color(),
-              hairColor: this.state.naturalHColor ? this.generateRandomNaturalHairColor() : Faker.commerce.color()
+              hairColor: this.state.naturalHColor ? this.generateRandomNaturalHairColor() : Faker.commerce.color(), 
+              age: this.generateRandomAge()
             }
           
             
@@ -78,6 +81,22 @@ class CharacterGenerator extends Component{
             });
         }
       }
+    
+    generateRandomAge(){
+        const ages = {
+            26: 'child', 
+            42: 'young adult', 
+            92: 'adult', 
+            100: 'older adult'
+        }
+       let number =  Math.floor(Math.random() * 100) + 1 
+       let keys;
+       for (keys in ages){
+         if (number <= keys){
+           return ages[keys]
+         }
+       }
+      }
 
 
     generateRandomNaturalHairColor(){
@@ -89,12 +108,10 @@ class CharacterGenerator extends Component{
                  100: 'red'
        }
      
-    //    let number =  Math.floor(Math.random() * 100) + 1 
-    let number = 100
+       let number =  Math.floor(Math.random() * 100) + 1 
        let keys;
        for (keys in naturalHairColors){
          if (number <= keys){
-             console.log(keys, number)
            return naturalHairColors[keys]
          }
        }
@@ -119,15 +136,16 @@ class CharacterGenerator extends Component{
          }
        }
      }
-     
+      
 
     renderCharacters(character){
         return (
             <div style={{border: 'solid 1px #ee'}}>
-                <p>{`${character.firstName}` + ` ` + `${character.lastName}` }</p>
+                <p>{`${character.firstName} ${character.lastName}` }</p>
                 <ul>
-                    <li>{`eye color:` + ` ` +  `${character.eyeColor}`}</li>
-                    <li>{`hair color:` + ` ` +  `${character.hairColor}`}</li>
+                    <li>{`eye color: ${character.eyeColor}`}</li>
+                    <li>{`hair color: ${character.hairColor}`}</li>
+                    <li>{`age: ${character.age}`}</li>
                 </ul>
             </div>
         )
