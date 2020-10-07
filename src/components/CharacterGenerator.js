@@ -6,6 +6,7 @@ class CharacterGenerator extends Component{
     constructor(props){
         super(props)
         this.state = {
+            number: '',
             characters: [],
             naturalHColor: false,
             naturalEColor: false,
@@ -40,7 +41,7 @@ class CharacterGenerator extends Component{
         e.preventDefault()
         this.reset()
        
-        for (let i = 0; i < 5; i++) {
+        for (let i = 0; i < this.state.number; i++) {
             const character = {
               firstName: Faker.name.firstName(), 
               lastName: Faker.name.lastName(), 
@@ -136,6 +137,14 @@ class CharacterGenerator extends Component{
          }
        }
      }
+
+     handleNumChange(event){
+        console.log(event.target.value)
+        this.setState({
+            number: event.target.value
+        })
+    }
+
       
 
     renderCharacters(character){
@@ -155,7 +164,15 @@ class CharacterGenerator extends Component{
         
         return(
             <div>
+                <h1>Generate a character!</h1>
                 <form onSubmit={this.handleSubmit}>
+                    <label>Number of characters
+                        <input
+                        type="number"
+                         value={ this.state.number } 
+                         min={1} max={20} 
+                         onChange={ (e) => this.handleNumChange(e) }/>
+                    </label>
                     <label>Use natural hair color
                         <input 
                         name="naturalHColor"
