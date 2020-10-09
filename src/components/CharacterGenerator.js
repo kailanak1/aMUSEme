@@ -6,7 +6,7 @@ class CharacterGenerator extends Component{
     constructor(props){
         super(props)
         this.state = {
-            number: '',
+            number: 5,
             characters: [],
             naturalHColor: false,
             naturalEColor: false,
@@ -67,7 +67,6 @@ class CharacterGenerator extends Component{
                 naturalHColor: !event.target.value
             });
         }
-        
       }
 
 
@@ -139,7 +138,6 @@ class CharacterGenerator extends Component{
      }
 
      handleNumChange(event){
-        console.log(event.target.value)
         this.setState({
             number: event.target.value
         })
