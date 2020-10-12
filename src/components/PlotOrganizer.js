@@ -27,11 +27,11 @@ const plotSections = [
   ]
 function PlotOrganizer(){
 
-    const [plotSections, updateSection] = useState(plotSections);
+    const [plot, updateSection] = useState(plotSections);
 
     function handleOnDragEnd(result) {
         if (!result.destination) return;
-        const items = Array.from(plotSections);
+        const items = Array.from(plot);
         const [reorderedItem] = items.splice(result.source, 1);
         items.splice(result.destination, 0, reorderedItem);
 
@@ -46,16 +46,16 @@ function PlotOrganizer(){
                 <Droppable droppableId="plotSections">
                     {(provided) => (
                     <ul className="plotSections" {...provided.droppableProps} ref={provided.innerRef}>
-                    {plotSections(({id, name, thumb}) => {
+                    {plot.map(({id, desc}) => {
                         return (
                             <Draggable key={id} draggableId={id} >
                                 {(provided) => (
                         <li ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps}>
-                            <div className="plotSections-thumb">
-                            <img src={thumb} alt={`${name} Thumb`} />
+                            <div className="plotSections">
+                            <b>{id}</b>
                             </div>
                             <p>
-                            { name }
+                            <p>{desc}</p>
                             </p>
                         </li>
                         )}

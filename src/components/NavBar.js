@@ -1,5 +1,6 @@
-import React, { Component } from 'react'
+import React from 'react'
 import {
+    Router,
     Link
   } from "react-router-dom";
 
@@ -9,9 +10,12 @@ function NavBar(){
           <ul>
             <li>
               <Link to="/CharacterGenerator">Character Generator</Link>
-            </li>
-            <li>
+              </li>
+              <li>
               <Link to="/PlotOrganizer">Plot Organizer</Link>
+              </li>
+              <li>
+              <Link to="/">Home</Link>
             </li>
           </ul>
         </nav>
