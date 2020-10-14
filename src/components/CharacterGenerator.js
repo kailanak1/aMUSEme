@@ -90,8 +90,7 @@ class CharacterGenerator extends Component{
             100: 'older adult'
         }
        let number =  Math.floor(Math.random() * 100) + 1 
-       let keys;
-       for (keys in ages){
+       for (let keys in ages){
          if (number <= keys){
            return ages[keys]
          }
@@ -109,8 +108,7 @@ class CharacterGenerator extends Component{
        }
      
        let number =  Math.floor(Math.random() * 100) + 1 
-       let keys;
-       for (keys in naturalHairColors){
+       for (let keys in naturalHairColors){
          if (number <= keys){
            return naturalHairColors[keys]
          }

@@ -9,6 +9,7 @@ aMUSEme is a fiction generator for creative writing projects (like NanoWrimo).
 
 ## Progress 
 - Character Generator (Basic)
+- Plot Organizer (Basic)
 
 ## Getting started 
 
@@ -17,7 +18,7 @@ aMUSEme is a fiction generator for creative writing projects (like NanoWrimo).
 3. From your terminal, type: 
 - ```$ npm install```
 - ```$ npm start```
-4. Use the button to generate new characters!
+4. Navigate to Character Generate and press submit to generate a list of characters or use the Plot organizer!
 
 ## Author 
 Kailana Kahawaii 

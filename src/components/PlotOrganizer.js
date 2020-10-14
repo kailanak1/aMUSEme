@@ -35,7 +35,6 @@ function PlotOrganizer(){
     const [plot, updateSection] = useState(plotSections);
 
     function handleOnDragEnd(result) {
-        console.log(result)
         if (!result.destination) return;
         const items = Array.from(plot);
         const [reorderedItem] = items.splice(result.source.index, 1);
