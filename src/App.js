@@ -7,7 +7,7 @@ import {
 } from "react-router-dom";
 
 import CharacterGenerator from './components/CharacterGenerator'
-import PlotOrganizer from './components/PlotOrganizer'
+import PlotOrganizerContainer from './components/PlotOrganizerContainer'
 import NavBar from './components/NavBar'
 import Landing from './components/Landing'
  
@@ -34,7 +34,7 @@ class App extends Component {
           <Route
           exact
           path='/PlotOrganizer'
-          component={PlotOrganizer}/>
+          component={PlotOrganizerContainer}/>
 
         </Switch>
         
