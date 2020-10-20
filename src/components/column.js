@@ -1,5 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
+import {Droppable } from 'react-beautiful-dnd'
+import Scene from './scene'
 
 const Container = styled.div`
     margin: 8px;
@@ -16,12 +18,21 @@ const SceneList = styled.div`
 
 export default class Column extends React.Component{
     render(){
+        console.log(this.props)
         return (
             <Container>
                 <Title>{this.props.column.title}</Title>
-                    <SceneList>
-                    Scenes go here
+                <Droppable droppableId={this.props.column.id}>
+                    {provided => (
+                        <SceneList
+                        ref={provided.innerRef }
+                        {...provided.droppableProps}
+                        >
+                        {this.props.scenes.map((scene, index) => <Scene key={scene.id} scene={scene} index={index}/>)}
+                        {provided.placeholder}
                     </SceneList>
+                    )}
+                </Droppable>
             </Container>
         )
     }

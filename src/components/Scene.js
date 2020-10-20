@@ -15,10 +15,16 @@ const Container = styled.div`
 export default class Scene extends React.Component{
     render(){
         return(
-            <Draggable>
-                <Container>
-                    
-                </Container>
+            <Draggable draggableId={this.props.scene.id} index={this.props.index}>
+                {provided => (
+                    <Container
+                        {...provided.draggableProps}
+                        {...provided.dragHandleProps}
+                        ref={provided.innerRef}
+                    >
+                    {this.props.scene.content}
+                    </Container>
+                )}
             </Draggable>
         )
     }

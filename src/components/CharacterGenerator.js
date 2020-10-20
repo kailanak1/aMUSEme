@@ -167,7 +167,7 @@ class CharacterGenerator extends Component{
                         <li>{`eye color: ${character.eyeColor}`}</li>
                         <li>{`hair color: ${character.hairColor}`}</li>
                         <li>{`age: ${character.age}`}</li>
-                </ul>
+                    </ul>
                 </DetailList>
             </Container>
         )
