@@ -1,6 +1,21 @@
 import React, { Component } from 'react'
 import Faker from 'faker'
 
+import styled from 'styled-components'
+
+const Container = styled.div`
+    margin: 8px;
+    border: 1px solid lightgrey;
+    border-radius: 2px;
+`
+const Title = styled.h3`
+    padding: 8px; 
+
+`
+const DetailList = styled.div`
+    padding: 8px
+`
+
 
 class CharacterGenerator extends Component{
     constructor(props){
@@ -145,14 +160,16 @@ class CharacterGenerator extends Component{
 
     renderCharacters(character){
         return (
-            <div style={{border: 'solid 1px #ee'}}>
-                <p>{`${character.firstName} ${character.lastName}` }</p>
-                <ul>
-                    <li>{`eye color: ${character.eyeColor}`}</li>
-                    <li>{`hair color: ${character.hairColor}`}</li>
-                    <li>{`age: ${character.age}`}</li>
+            <Container>
+                <Title>{`${character.firstName} ${character.lastName}` }</Title>
+                <DetailList>
+                    <ul>
+                        <li>{`eye color: ${character.eyeColor}`}</li>
+                        <li>{`hair color: ${character.hairColor}`}</li>
+                        <li>{`age: ${character.age}`}</li>
                 </ul>
-            </div>
+                </DetailList>
+            </Container>
         )
     }
 
