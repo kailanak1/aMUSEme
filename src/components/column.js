@@ -1,14 +1,14 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Droppable } from 'react-beautiful-dnd'
+import { Droppable, Draggable } from 'react-beautiful-dnd'
 import Scene from './Scene'
 
 const Container = styled.div`
     margin: 8px;
     border: 1px solid lightgrey;
+    background-color: white;
     border-radius: 2px;
     width: 220px;
-    background-color: ${props => (props.isDraggingOver ? 'grey' : 'white')}
 
     display: flex; 
     flex-direction: column;
@@ -16,32 +16,43 @@ const Container = styled.div`
 const Title = styled.h3`
     padding: 8px; 
 
+
 `
 const SceneList = styled.div`
     padding: 8px
     flex-grow: 1;
     min-height: 100px;
+    background-color: inherit;
 `
 
 export default class Column extends React.Component{
     render(){
-        console.log(this.props.isDraggingOver)
         return (
-            <Container>
-                <Title>{this.props.column.title}</Title>
-                <Droppable droppableId={this.props.column.id}>
-                    {(provided, snapshot) => (
-                        <SceneList
-                        ref={provided.innerRef }
-                        {...provided.droppableProps}
-                        isDraggingOver={snapshot.isDraggingOver}
-                        >
-                        {this.props.scenes.map((scene, index) => <Scene key={scene.id} scene={scene} index={index}/>)}
-                        {provided.placeholder}
-                    </SceneList>
-                    )}
-                </Droppable>
-            </Container>
+            <Draggable draggableId={this.props.column.id} index={this.props.index}>
+                {provided=> (
+                      <Container
+                      {...provided.draggableProps}
+                      ref={provided.innerRef}
+                      >
+                      <Title
+                      {...provided.dragHandleProps}
+                      >{this.props.column.title}</Title>
+                      <Droppable droppableId={this.props.column.id} type="scene">
+                          {(provided, snapshot) => (
+                              <SceneList
+                              ref={provided.innerRef }
+                              {...provided.droppableProps}
+                              isDraggingOver={snapshot.isDraggingOver}
+                              >
+                              {this.props.scenes.map((scene, index) => <Scene key={scene.id} scene={scene} index={index}/>)}
+                              {provided.placeholder}
+                          </SceneList>
+                          )}
+                      </Droppable>
+                  </Container>
+                )}
+              
+            </Draggable>
         )
     }
 }

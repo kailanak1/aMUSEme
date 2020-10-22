@@ -1,7 +1,7 @@
 import React from 'react'
 import '@atlaskit/css-reset'
 import styled from 'styled-components'
-import { DragDropContext } from 'react-beautiful-dnd'
+import { DragDropContext, Droppable } from 'react-beautiful-dnd'
 import plotData from './plotData'
 import Column from './column'
 
@@ -14,7 +14,7 @@ class PlotOrganizerContainer extends React.Component{
   state = plotData
 
   onDragEnd = result =>{
-    const {destination, source, draggableId } = result; 
+    const {destination, source, draggableId, type } = result; 
 
     if(!destination){
       return;
@@ -26,6 +26,24 @@ class PlotOrganizerContainer extends React.Component{
     ){
       return;
     }
+
+    //column reordering 
+
+    if(type==='column'){
+      const newColumnOrder = Array.from(this.state.columnOrder); 
+      newColumnOrder.splice(source.index, 1); 
+      newColumnOrder.splice(destination.index, 0, draggableId)
+
+      const newState = {
+        ...this.state, 
+        columnOrder: newColumnOrder
+      }
+
+      this.setState(newState)
+      return;
+    }
+
+    //scene reordering
 
     const start = this.state.columns[source.droppableId]
     const finish = this.state.columns[destination.droppableId]
@@ -81,6 +99,7 @@ class PlotOrganizerContainer extends React.Component{
     }; 
 
     this.setState(newState)
+    //call endpoint here
     
   }
 
@@ -89,16 +108,23 @@ class PlotOrganizerContainer extends React.Component{
       <DragDropContext
         onDragEnd={this.onDragEnd}
       >
-        <Container>
-        {this.state.columnOrder.map((columnId) => {
-          const column = this.state.columns[columnId]
-          const scenes = column.sceneIds.map(sceneId => this.state.scenes[sceneId])
-
-          return <Column key={column.id} column={column} scenes={scenes}/>
-          
-        })
-      }
-        </Container>
+        <Droppable droppableId="all-columns" direction="horizontal" type="column">
+          {provided => (
+                <Container
+                {...provided.droppableId}
+                ref={provided.innerRef}
+                >
+                {this.state.columnOrder.map((columnId, index) => {
+                  const column = this.state.columns[columnId]
+                  const scenes = column.sceneIds.map(sceneId => this.state.scenes[sceneId])
+    
+                  return <Column key={column.id} column={column} scenes={scenes} index={index}/>
+                  })
+                }
+                {provided.placeholder}
+              </Container>
+          )}
+        </Droppable>
       </DragDropContext>
     )
   }
