@@ -8,7 +8,8 @@ const Container = styled.div`
     border-radius: 2px; 
     padding: 8px; 
     margin-bottom: 8px;
-    background-color: white;
+    transition: background-color 0.2s ease;
+    background-color: ${props => (props.isDragging ? 'lightblue' : 'white')};
 `
 
 
@@ -16,11 +17,12 @@ export default class Scene extends React.Component{
     render(){
         return(
             <Draggable draggableId={this.props.scene.id} index={this.props.index}>
-                {provided => (
+                {(provided, snapshot) => (
                     <Container
                         {...provided.draggableProps}
                         {...provided.dragHandleProps}
                         ref={provided.innerRef}
+                        isDragging={snapshot.isDragging}
                     >
                     {this.props.scene.content}
                     </Container>
