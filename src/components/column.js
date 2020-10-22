@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import {Droppable } from 'react-beautiful-dnd'
+import { Droppable } from 'react-beautiful-dnd'
 import Scene from './scene'
 
 const Container = styled.div`

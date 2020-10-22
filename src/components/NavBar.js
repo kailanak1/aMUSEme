@@ -16,7 +16,10 @@ function NavBar(){
               </li>
               <li>
               <Link to="/">Home</Link>
-            </li>
+              </li>
+              <li>
+                <Link to="/Login">Login</Link>
+              </li>
           </ul>
         </nav>
     )
