@@ -15,15 +15,19 @@ const Container = styled.div`
 `
 const Title = styled.h3`
     padding: 8px; 
-
-
 `
 const SceneList = styled.div`
-    padding: 8px
+    padding: 8px;
     flex-grow: 1;
     min-height: 100px;
     background-color: inherit;
 `
+
+const AddButton = styled.button`
+    cursor: pointer;
+    float: right;
+`
+
 
 export default class Column extends React.Component{
     render(){
@@ -36,7 +40,9 @@ export default class Column extends React.Component{
                       >
                       <Title
                       {...provided.dragHandleProps}
-                      >{this.props.column.title}</Title>
+                      >{this.props.column.title}
+                      <AddButton>+</AddButton>
+                      </Title>
                       <Droppable droppableId={this.props.column.id} type="scene">
                           {(provided, snapshot) => (
                               <SceneList

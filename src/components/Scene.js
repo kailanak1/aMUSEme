@@ -24,7 +24,7 @@ export default class Scene extends React.Component{
                         ref={provided.innerRef}
                         isDragging={snapshot.isDragging}
                     >
-                    {this.props.scene.content}
+                  
                     </Container>
                 )}
             </Draggable>

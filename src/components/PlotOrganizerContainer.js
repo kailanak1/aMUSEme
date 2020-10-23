@@ -103,28 +103,38 @@ class PlotOrganizerContainer extends React.Component{
     
   }
 
+  renderDroppable = () => {
+    return(
+      <Droppable droppableId="all-columns" direction="horizontal" type="column">
+      {provided => (
+            <Container
+            {...provided.droppableId}
+            ref={provided.innerRef}
+            >
+            {this.state.columnOrder.map((columnId, index) => {
+              const column = this.state.columns[columnId]
+              if(column.sceneIds){
+              const scenes = column.sceneIds.map(sceneId => this.state.scenes[sceneId])
+
+              return <Column key={column.id} column={column} scenes={scenes} index={index}/>
+              } else {
+                return <Column key={column.id} column={column}></Column>
+              }
+              })
+            }
+            {provided.placeholder}
+          </Container>
+      )}
+    </Droppable>
+    )
+  }
+
   render(){
     return( 
       <DragDropContext
         onDragEnd={this.onDragEnd}
       >
-        <Droppable droppableId="all-columns" direction="horizontal" type="column">
-          {provided => (
-                <Container
-                {...provided.droppableId}
-                ref={provided.innerRef}
-                >
-                {this.state.columnOrder.map((columnId, index) => {
-                  const column = this.state.columns[columnId]
-                  const scenes = column.sceneIds.map(sceneId => this.state.scenes[sceneId])
-    
-                  return <Column key={column.id} column={column} scenes={scenes} index={index}/>
-                  })
-                }
-                {provided.placeholder}
-              </Container>
-          )}
-        </Droppable>
+      {this.renderDroppable()}
       </DragDropContext>
     )
   }
