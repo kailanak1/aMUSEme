@@ -14,7 +14,7 @@ class PlotOrganizerContainer extends React.Component{
   state = plotData
 
   onDragEnd = result =>{
-    const {destination, source, draggableId, type } = result; 
+    const { destination, source, draggableId, type } = result; 
 
     if(!destination){
       return;

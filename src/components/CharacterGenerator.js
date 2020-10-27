@@ -142,8 +142,7 @@ class CharacterGenerator extends Component{
        }
      
        let number =  Math.floor(Math.random() * 100) + 1 
-       let keys;
-       for (keys in naturalEyeColors){
+       for (let keys in naturalEyeColors){
          if (number <= keys){
            return naturalEyeColors[keys]
          }
