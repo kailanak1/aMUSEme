@@ -18,6 +18,9 @@ function NavBar(){
               <Link to="/">Home</Link>
               </li>
               <li>
+              <Link to="/RandomPlotGenerator">Random Plot Generator</Link>
+              </li>
+              <li>
                 <Link to="/Login">Login</Link>
               </li>
           </ul>

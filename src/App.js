@@ -11,6 +11,7 @@ import PlotOrganizerContainer from './components/PlotOrganizerContainer'
 import NavBar from './components/NavBar'
 import Landing from './components/Landing'
 import Login from './components/Login'
+import RandomPlotGenerator from './components/RandomPlotGenerator';
  
 class App extends Component {
   render() {
@@ -36,6 +37,11 @@ class App extends Component {
           exact
           path='/PlotOrganizer'
           component={PlotOrganizerContainer}/>
+
+          <Route 
+          exact
+          path='/RandomPlotGenerator'
+          component={RandomPlotGenerator}/>
 
           <Route
           exact

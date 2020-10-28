@@ -14,6 +14,8 @@ const Container = styled.div`
 
 
 export default class Scene extends React.Component{
+
+
     render(){
         return(
             <Draggable draggableId={this.props.scene.id} index={this.props.index}>
@@ -24,6 +26,9 @@ export default class Scene extends React.Component{
                         ref={provided.innerRef}
                         isDragging={snapshot.isDragging}
                     >
+                        <form>
+                            <input type="text"></input>
+                        </form>
                   
                     </Container>
                 )}
