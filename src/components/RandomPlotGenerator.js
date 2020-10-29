@@ -8,7 +8,8 @@ const Container = styled.div`
     margin: 8px;
     border: 1px solid lightgrey;
     border-radius: 2px;
-    width: 550px;
+    width: 750px;
+    padding: 8px 
 `
 
 class RandomPlotGenerator extends React.Component{
@@ -69,7 +70,9 @@ class RandomPlotGenerator extends React.Component{
 
 
     renderRandomPlot = () => {
-        return  <p>{`${this.genreRelatedSetting(RandomPlotData)} ${this.genreRelatedSettingDescription(RandomPlotData)}, this story involves ${this.genreRelatedCharacter(RandomPlotData)} and ${this.genreRelatedConflict(RandomPlotData)}.`}</p>
+        return this.state.sentences.map(sentence => 
+             <Container>{sentence}</Container>
+        )
     }
 
     reset() {
@@ -81,17 +84,36 @@ class RandomPlotGenerator extends React.Component{
     onClick = () => {
         this.reset()
 
+        for(let i = 0; i < this.state.number; i++){
+            const sentence = `${this.genreRelatedSetting(RandomPlotData)} ${this.genreRelatedSettingDescription(RandomPlotData)}, this story involves ${this.genreRelatedCharacter(RandomPlotData)} and ${this.genreRelatedConflict(RandomPlotData)}.`
+        
+        
         this.setState(prevState => ({
-            sentences: [...prevState.sentences, `${this.genreRelatedSetting(RandomPlotData)} ${this.genreRelatedSettingDescription(RandomPlotData)}, this story involves ${this.genreRelatedCharacter(RandomPlotData)} and ${this.genreRelatedConflict(RandomPlotData)}.`],
+            sentences: [...prevState.sentences, sentence],
         }))
+        }
     }
+
+    handleNumChange = (event) => {
+        this.setState({
+            number: event.target.value
+        })
+    }
+
 
     render(){
         return(
             <div>
                 <h1>Random Plot Generator</h1>
+                <label>Number of ideas
+                        <input
+                        type="number"
+                         value={ this.state.number } 
+                         min={1} max={10} 
+                         onChange={ (e) => this.handleNumChange(e) }/>
+                    </label>
                 <button onClick={this.onClick}>Generate new ideas</button>
-                <Container>{this.state.sentences}</Container>
+                {this.renderRandomPlot()}
             </div>
         )
     }
