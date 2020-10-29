@@ -39,7 +39,6 @@ class CharacterGenerator extends Component{
               hairColor: Faker.commerce.color(), 
               age: this.generateRandomAge()
             }
-          
             
             this.setState(prevState => ({
               characters: [...prevState.characters, character],
@@ -174,7 +173,6 @@ class CharacterGenerator extends Component{
     }
 
     render(){
-        
         return(
             <div>
                 <h1>Generate a character!</h1>

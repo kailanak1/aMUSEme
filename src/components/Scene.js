@@ -26,10 +26,7 @@ export default class Scene extends React.Component{
                         ref={provided.innerRef}
                         isDragging={snapshot.isDragging}
                     >
-                        <form>
-                            <input type="text"></input>
-                        </form>
-                  
+                  {/* form goes here */}
                     </Container>
                 )}
             </Draggable>
