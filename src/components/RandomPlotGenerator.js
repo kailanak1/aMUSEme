@@ -72,10 +72,25 @@ class RandomPlotGenerator extends React.Component{
         return  <p>{`${this.genreRelatedSetting(RandomPlotData)} ${this.genreRelatedSettingDescription(RandomPlotData)}, this story involves ${this.genreRelatedCharacter(RandomPlotData)} and ${this.genreRelatedConflict(RandomPlotData)}.`}</p>
     }
 
+    reset() {
+        this.setState({
+            sentences: []
+        });
+    }
+
+    onClick = () => {
+        this.reset()
+
+        this.setState(prevState => ({
+            sentences: [...prevState.sentences, `${this.genreRelatedSetting(RandomPlotData)} ${this.genreRelatedSettingDescription(RandomPlotData)}, this story involves ${this.genreRelatedCharacter(RandomPlotData)} and ${this.genreRelatedConflict(RandomPlotData)}.`],
+        }))
+    }
+
     render(){
         return(
             <div>
                 <h1>Random Plot Generator</h1>
+                <button onClick={this.onClick}>Generate new ideas</button>
                 <Container>{this.state.sentences}</Container>
             </div>
         )
