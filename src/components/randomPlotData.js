@@ -1,6 +1,6 @@
 import React from 'react'
 
-const RandomPlotData = {
+const randomPlotData = {
     genres: {
         'fantasy':
         {
@@ -123,4 +123,4 @@ const RandomPlotData = {
     }
 }
 
-export default RandomPlotData
+export default randomPlotData

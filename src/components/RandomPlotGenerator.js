@@ -1,5 +1,5 @@
 import React from 'react'
-import RandomPlotData from './RandomPlotData'
+import randomPlotData from './randomPlotData'
 
 import styled from 'styled-components'
 
@@ -24,7 +24,7 @@ class RandomPlotGenerator extends React.Component{
 
     componentDidMount(){
         this.setState(prevState => ({
-            sentences: [...prevState.sentences, `${this.genreRelatedSetting(RandomPlotData)} ${this.genreRelatedSettingDescription(RandomPlotData)}, this story involves ${this.genreRelatedCharacter(RandomPlotData)} and ${this.genreRelatedConflict(RandomPlotData)}.`],
+            sentences: [...prevState.sentences, `${this.genreRelatedSetting(randomPlotData)} ${this.genreRelatedSettingDescription(randomPlotData)}, this story involves ${this.genreRelatedCharacter(randomPlotData)} and ${this.genreRelatedConflict(randomPlotData)}.`],
         }))
     }
 
@@ -85,7 +85,7 @@ class RandomPlotGenerator extends React.Component{
         this.reset()
 
         for(let i = 0; i < this.state.number; i++){
-            const sentence = `${this.genreRelatedSetting(RandomPlotData)} ${this.genreRelatedSettingDescription(RandomPlotData)}, this story involves ${this.genreRelatedCharacter(RandomPlotData)} and ${this.genreRelatedConflict(RandomPlotData)}.`
+            const sentence = `${this.genreRelatedSetting(randomPlotData)} ${this.genreRelatedSettingDescription(randomPlotData)}, this story involves ${this.genreRelatedCharacter(randomPlotData)} and ${this.genreRelatedConflict(randomPlotData)}.`
         
         
         this.setState(prevState => ({
