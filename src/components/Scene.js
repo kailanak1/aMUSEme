@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import SceneForm from './SceneForm'
 import styled from 'styled-components';
 
 import {Draggable} from 'react-beautiful-dnd'
@@ -13,9 +14,7 @@ const Container = styled.div`
 `
 
 
-export default class Scene extends React.Component{
-
-
+export default class Scene extends Component{
     render(){
         return(
             <Draggable draggableId={this.props.scene.id} index={this.props.index}>
@@ -26,7 +25,7 @@ export default class Scene extends React.Component{
                         ref={provided.innerRef}
                         isDragging={snapshot.isDragging}
                     >
-                  {/* form goes here */}
+                  <SceneForm/>
                     </Container>
                 )}
             </Draggable>

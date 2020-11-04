@@ -29,7 +29,6 @@ class RandomPlotGenerator extends React.Component{
     }
 
     genreRelatedCharacter = (data)=> {
-     
         let charList = data.genres.fantasy.characters
         let number = Math.floor(Math.random() * charList.length)
         return charList[number]
@@ -45,8 +44,7 @@ class RandomPlotGenerator extends React.Component{
         let settingDesc = ""
         let plightList = data.genres.fantasy.setting.plights
         let plightNum =  Math.floor(Math.random() * plightList.length)
-        let plightRef = data.genres.fantasy.setting.plights
-        let plight = Object.keys(plightRef[plightNum])
+        let plight = Object.keys(plightList[plightNum])
         
         let plightArr = Object.values(plightList[plightNum]).flat()
         let actionNum = plightArr[Math.floor(Math.random() * plightArr.length)]
@@ -70,8 +68,8 @@ class RandomPlotGenerator extends React.Component{
 
 
     renderRandomPlot = () => {
-        return this.state.sentences.map(sentence => 
-             <Container>{sentence}</Container>
+        return this.state.sentences.map((sentence, idx) => 
+             <Container key={idx}>{sentence}</Container>
         )
     }
 

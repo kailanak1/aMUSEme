@@ -1,30 +1,32 @@
 import React from 'react'
+
 import {
-    Router,
     Link
   } from "react-router-dom";
+import styled from 'styled-components'
+
+const Navbar = styled.div`
+  background-color: #B9EFE1; 
+  text-align: justify;
+`
+
+
 
 function NavBar(){
     return(
-        <nav>
-          <ul>
-            <li>
+        <Navbar>
               <Link to="/CharacterGenerator">Character Generator</Link>
-              </li>
-              <li>
+             
               <Link to="/PlotOrganizer">Plot Organizer</Link>
-              </li>
-              <li>
+             
               <Link to="/">Home</Link>
-              </li>
-              <li>
+              
               <Link to="/RandomPlotGenerator">Random Plot Generator</Link>
-              </li>
-              <li>
-                <Link to="/Login">Login</Link>
-              </li>
-          </ul>
-        </nav>
+           
+              <Link to="/Login">Login</Link>
+             
+          
+        </Navbar>
     )
 }
 

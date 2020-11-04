@@ -1,5 +1,3 @@
-import React from 'react'
-
 const randomPlotData = {
     genres: {
         'fantasy':
@@ -12,7 +10,7 @@ const randomPlotData = {
                 'a princess', 
                 'an assassin', 
                 'a hunter',
-                'an apprentence', 
+                'an apprentice', 
                 'a demon',
                 'a warrior',
                 'a knight',
@@ -34,7 +32,7 @@ const randomPlotData = {
                     'At a trading post',
                     'In a port city',
                     'At a border town',
-                    'In acolony',
+                    'In a colony',
                     'In a mining town',
                     'In a forest',
                     'In a river',
@@ -75,7 +73,7 @@ const randomPlotData = {
                     'the bordom',
                     'the kidnapping ',
                     'the coming',
-                    'the dissapearance',
+                    'the disapearance',
                     'the birth',
                     'the betrayal',
                    ],
