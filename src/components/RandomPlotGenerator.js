@@ -1,5 +1,6 @@
 import React from 'react'
 import randomPlotData from './randomPlotData'
+import ChallengeForm from './ChallengeForm'
 
 import styled from 'styled-components'
 
@@ -18,7 +19,8 @@ class RandomPlotGenerator extends React.Component{
         this.state = {
             number: 1,
             sentences: [],
-            genre: 'fantasy'
+            genre: 'fantasy', 
+            form: false
         }
     }
 
@@ -66,10 +68,19 @@ class RandomPlotGenerator extends React.Component{
         return conflict.concat(problem, instigator)
     }
 
+    onChallengeClick = () => {
+        console.log('hi')
+        this.setState({
+            form: !false 
+        })
+    }
 
     renderRandomPlot = () => {
         return this.state.sentences.map((sentence, idx) => 
-             <Container key={idx}>{sentence}</Container>
+             <Container key={idx}>
+                 {sentence}
+                 <button onClick={this.onChallengeClick}>Challenge</button>
+             </Container>
         )
     }
 
@@ -100,6 +111,7 @@ class RandomPlotGenerator extends React.Component{
 
 
     render(){
+        console.log(this.state)
         return(
             <div>
                 <h1>Random Plot Generator</h1>
@@ -112,6 +124,7 @@ class RandomPlotGenerator extends React.Component{
                     </label>
                 <button onClick={this.onClick}>Generate new ideas</button>
                 {this.renderRandomPlot()}
+                {this.state.form ? <ChallengeForm/>: null}
             </div>
         )
     }
