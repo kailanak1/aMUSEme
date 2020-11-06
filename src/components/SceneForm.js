@@ -4,7 +4,7 @@ import styled from 'styled-components';
 function SceneForm(){
     return(
         <form>
-            <input type="text"></input>
+            <input type="textArea"></input>
         </form>
     )
 }

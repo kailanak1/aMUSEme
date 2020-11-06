@@ -13,6 +13,16 @@ const Container = styled.div`
     padding: 8px 
 `
 
+const Button = styled.button`
+    margin: 8px; 
+    padding; 8px;
+
+    &:hover {
+        color: blue;
+        cursor: pointer;
+      }
+`
+
 class RandomPlotGenerator extends React.Component{
     constructor(props){
         super(props)
@@ -69,7 +79,6 @@ class RandomPlotGenerator extends React.Component{
     }
 
     onChallengeClick = () => {
-        console.log('hi')
         this.setState({
             form: !false 
         })
@@ -79,7 +88,7 @@ class RandomPlotGenerator extends React.Component{
         return this.state.sentences.map((sentence, idx) => 
              <Container key={idx}>
                  {sentence}
-                 <button onClick={this.onChallengeClick}>Challenge</button>
+                 <Button onClick={this.onChallengeClick}>Challenge</Button>
              </Container>
         )
     }
@@ -109,9 +118,14 @@ class RandomPlotGenerator extends React.Component{
         })
     }
 
+    showHint = () => {
+        this.setState({
+            showHint: !false
+        })
+    }
+
 
     render(){
-        console.log(this.state)
         return(
             <div>
                 <h1>Random Plot Generator</h1>
@@ -121,8 +135,9 @@ class RandomPlotGenerator extends React.Component{
                          value={ this.state.number } 
                          min={1} max={10} 
                          onChange={ (e) => this.handleNumChange(e) }/>
-                    </label>
-                <button onClick={this.onClick}>Generate new ideas</button>
+                </label>
+                <Button 
+                onClick={this.onClick}>Generate new ideas</Button>
                 {this.renderRandomPlot()}
                 {this.state.form ? <ChallengeForm/>: null}
             </div>

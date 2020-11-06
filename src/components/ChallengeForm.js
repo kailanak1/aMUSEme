@@ -28,8 +28,6 @@ function blinkingEffect() {
     `;
   }
 
-
-
 const TimesUp = styled.text`
     color: red;
     animation: ${blinkingEffect} 1s linear infinite;
@@ -55,7 +53,8 @@ class ChallengeForm extends React.Component{
             this.setState(({ seconds }) => ({
               seconds: seconds - 1
             }))
-          }    if (seconds === 0) {
+          }
+          if (seconds === 0) {
             if (minutes === 0) {
               clearInterval(this.myInterval)
             } else {
@@ -83,23 +82,22 @@ class ChallengeForm extends React.Component{
             analyze: true
         })
     }
-  
+
     countWords = () => {
         let str = this.state.words
-            var matches = str.match(/[\w\d\’\'-]+/gi);
-            return matches ? matches.length : 0;
+        const matches = str.match(/[\w\d\’\'-]+/gi);
+        return matches ? matches.length : 0;
     }
     
 
     render(){
-        console.log(this.state.words)
         const { minutes, seconds } = this.state
         return(
             <div>
             <Form>
                 <Title>   
                     { minutes === 0 && seconds === 0
-                        ? <TimesUp>Time!</TimesUp>
+                        ? <TimesUp>Time's Up!</TimesUp>
                         : <h1>Time Remaining: {minutes}:{seconds < 10 ? `0${seconds}` : seconds}</h1>
                     }</Title>
                 <TextField
@@ -110,7 +108,7 @@ class ChallengeForm extends React.Component{
                 />
             </Form>
             <AnalysisButton onClick={this.analyze}>Analyze!</AnalysisButton>
-                    {this.state.analyze ? <p>{`You wrote ${this.countWords()} words and ${this.state.words.length} characters in ____ minutes and ___ seconds.`}</p> : null}
+                    {this.state.analyze ? <p>{`You wrote ${this.countWords()} words and ${this.state.words.length} characters.`}</p> : null}
            </div>
         )
     }
