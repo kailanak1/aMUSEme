@@ -79,9 +79,10 @@ class RandomPlotGenerator extends React.Component{
     }
 
     onChallengeClick = () => {
-        this.setState({
-            form: !false 
-        })
+        this.setState(prevState => ({
+            form: !prevState.form
+          }))
+        
     }
 
     renderRandomPlot = () => {
@@ -135,7 +136,7 @@ class RandomPlotGenerator extends React.Component{
                          value={ this.state.number } 
                          min={1} max={10} 
                          onChange={ (e) => this.handleNumChange(e) }/>
-                </label>
+                </label> 
                 <Button 
                 onClick={this.onClick}>Generate new ideas</Button>
                 {this.renderRandomPlot()}

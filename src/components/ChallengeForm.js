@@ -7,7 +7,6 @@ const Form = styled.form`
 `
 const Title = styled.h3`
     padding: 8px; 
-
 `
 
 const TextField = styled.textarea`
@@ -20,7 +19,7 @@ const TextField = styled.textarea`
     margin: 8px;
 `
 
-function blinkingEffect() {
+function blink() {
     return keyframes`
       50% {
         opacity: 0;
@@ -29,18 +28,19 @@ function blinkingEffect() {
   }
 
 const TimesUp = styled.text`
+    padding: 8px; 
     color: red;
-    animation: ${blinkingEffect} 1s linear infinite;
+    animation: ${blink} 1s linear infinite;
 `
 
-const AnalysisButton = styled.button`
+const Button = styled.button`
     padding: 8px; 
     margin: 8px;
 `
 
 class ChallengeForm extends React.Component{
     state={
-        minutes: 1, 
+        minutes: 5, 
         seconds: 0,
         words: '',
         analyze: false
@@ -83,6 +83,15 @@ class ChallengeForm extends React.Component{
         })
     }
 
+    cancel = () => {
+        this.setState({
+            minutes: 5, 
+            seconds: 0,
+            words: '',
+            analyze: false
+        })
+    }
+
     countWords = () => {
         let str = this.state.words
         const matches = str.match(/[\w\d\’\'-]+/gi);
@@ -101,14 +110,15 @@ class ChallengeForm extends React.Component{
                         : <h1>Time Remaining: {minutes}:{seconds < 10 ? `0${seconds}` : seconds}</h1>
                     }</Title>
                 <TextField
-                value={this.state.words}
-                onChange={this.handleChange}
-                placeholder="Write your story"
-                name="words" 
+                 value={this.state.words}
+                 onChange={this.handleChange}
+                 placeholder="Write your story"
+                 name="words" 
                 />
             </Form>
-            <AnalysisButton onClick={this.analyze}>Analyze!</AnalysisButton>
+            <Button onClick={this.analyze}>Analyze!</Button>
                     {this.state.analyze ? <p>{`You wrote ${this.countWords()} words and ${this.state.words.length} characters.`}</p> : null}
+           {/* <Button onClick={this.cancel}>Cancel Challenge</Button>  */}
            </div>
         )
     }
