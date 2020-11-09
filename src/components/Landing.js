@@ -3,7 +3,6 @@ import styled from 'styled-components'
 
 const Title = styled.h3`
     padding: 8px; 
-
 `
 function Landing(){
     return(

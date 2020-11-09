@@ -30,7 +30,7 @@ class RandomPlotGenerator extends React.Component{
             number: 1,
             sentences: [],
             genre: 'fantasy', 
-            form: false
+            chform: false, 
         }
     }
 
@@ -80,7 +80,7 @@ class RandomPlotGenerator extends React.Component{
 
     onChallengeClick = () => {
         this.setState(prevState => ({
-            form: !prevState.form
+            chform: !prevState.chform
           }))
         
     }
@@ -140,7 +140,7 @@ class RandomPlotGenerator extends React.Component{
                 <Button 
                 onClick={this.onClick}>Generate new ideas</Button>
                 {this.renderRandomPlot()}
-                {this.state.form ? <ChallengeForm/>: null}
+                {this.state.chform ? <ChallengeForm/>: null}
             </div>
         )
     }

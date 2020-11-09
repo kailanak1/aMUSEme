@@ -1,4 +1,6 @@
-import React from 'react'
+import React, { useState } from 'react'
+
+import CountdownTimer from './CountdownTimer'
 
 import styled, { keyframes } from 'styled-components'
 
@@ -19,57 +21,20 @@ const TextField = styled.textarea`
     margin: 8px;
 `
 
-function blink() {
-    return keyframes`
-      50% {
-        opacity: 0;
-      }
-    `;
-  }
 
-const TimesUp = styled.text`
-    padding: 8px; 
-    color: red;
-    animation: ${blink} 1s linear infinite;
-`
 
 const Button = styled.button`
     padding: 8px; 
     margin: 8px;
 `
 
-class ChallengeForm extends React.Component{
+class ChallengeForm extends React.Component {
     state={
-        minutes: 5, 
-        seconds: 0,
+       
         words: '',
         analyze: false
     }
 
-    componentDidMount() {
-        this.myInterval = setInterval(() => {
-          const { seconds, minutes } = this.state    
-          if (seconds > 0) {
-            this.setState(({ seconds }) => ({
-              seconds: seconds - 1
-            }))
-          }
-          if (seconds === 0) {
-            if (minutes === 0) {
-              clearInterval(this.myInterval)
-            } else {
-              this.setState(({ minutes }) => ({
-                minutes: minutes - 1,
-                seconds: 59
-              }))
-            }
-          }
-        }, 1000)
-      }
-
-    componentWillUnmount() {
-        clearInterval(this.myInterval)
-    }
 
     handleChange = (event) => {
         this.setState({
@@ -83,14 +48,14 @@ class ChallengeForm extends React.Component{
         })
     }
 
-    cancel = () => {
-        this.setState({
-            minutes: 5, 
-            seconds: 0,
-            words: '',
-            analyze: false
-        })
-    }
+    // cancel = () => {
+    //     this.setState({
+    //         minutes: 5, 
+    //         seconds: 0,
+    //         words: '',
+    //         analyze: false
+    //     })
+    // }
 
     countWords = () => {
         let str = this.state.words
@@ -100,15 +65,13 @@ class ChallengeForm extends React.Component{
     
 
     render(){
-        const { minutes, seconds } = this.state
+
         return(
             <div>
             <Form>
-                <Title>   
-                    { minutes === 0 && seconds === 0
-                        ? <TimesUp>Time's Up!</TimesUp>
-                        : <h1>Time Remaining: {minutes}:{seconds < 10 ? `0${seconds}` : seconds}</h1>
-                    }</Title>
+            
+                <CountdownTimer/>
+                
                 <TextField
                  value={this.state.words}
                  onChange={this.handleChange}
