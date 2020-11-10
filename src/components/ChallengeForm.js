@@ -1,14 +1,12 @@
-import React, { useState } from 'react'
+import React  from 'react'
 
 import CountdownTimer from './CountdownTimer'
 
-import styled, { keyframes } from 'styled-components'
+import styled from 'styled-components'
 
 const Form = styled.form`
     width: 100%;
-`
-const Title = styled.h3`
-    padding: 8px; 
+    padding: 8px;
 `
 
 const TextField = styled.textarea`
@@ -21,16 +19,16 @@ const TextField = styled.textarea`
     margin: 8px;
 `
 
-
-
 const Button = styled.button`
     padding: 8px; 
     margin: 8px;
+    cursor: pointer;
 `
+
+
 
 class ChallengeForm extends React.Component {
     state={
-       
         words: '',
         analyze: false
     }
@@ -47,15 +45,6 @@ class ChallengeForm extends React.Component {
             analyze: true
         })
     }
-
-    // cancel = () => {
-    //     this.setState({
-    //         minutes: 5, 
-    //         seconds: 0,
-    //         words: '',
-    //         analyze: false
-    //     })
-    // }
 
     countWords = () => {
         let str = this.state.words
@@ -81,7 +70,6 @@ class ChallengeForm extends React.Component {
             </Form>
             <Button onClick={this.analyze}>Analyze!</Button>
                     {this.state.analyze ? <p>{`You wrote ${this.countWords()} words and ${this.state.words.length} characters.`}</p> : null}
-           {/* <Button onClick={this.cancel}>Cancel Challenge</Button>  */}
            </div>
         )
     }

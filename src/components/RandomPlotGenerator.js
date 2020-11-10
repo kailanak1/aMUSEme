@@ -15,12 +15,25 @@ const Container = styled.div`
 
 const Button = styled.button`
     margin: 8px; 
-    padding; 8px;
+    padding: 8px;
 
     &:hover {
         color: blue;
         cursor: pointer;
       }
+`
+
+const Form = styled.form`
+    width: 100%;
+    padding: 8px;
+`
+
+const Title = styled.h3`
+    padding: 8px; 
+`
+
+const P = styled.p`
+      padding: 8px;
 `
 
 class RandomPlotGenerator extends React.Component{
@@ -89,7 +102,7 @@ class RandomPlotGenerator extends React.Component{
         return this.state.sentences.map((sentence, idx) => 
              <Container key={idx}>
                  {sentence}
-                 <Button onClick={this.onChallengeClick}>Challenge</Button>
+                 
              </Container>
         )
     }
@@ -129,7 +142,10 @@ class RandomPlotGenerator extends React.Component{
     render(){
         return(
             <div>
-                <h1>Random Plot Generator</h1>
+               
+                <Title>Random Plot Generator</Title>
+                <P>
+                <Form>
                 <label>Number of ideas
                         <input
                         type="number"
@@ -137,8 +153,14 @@ class RandomPlotGenerator extends React.Component{
                          min={1} max={10} 
                          onChange={ (e) => this.handleNumChange(e) }/>
                 </label> 
+                </Form>
+                </P>
+                
                 <Button 
                 onClick={this.onClick}>Generate new ideas</Button>
+                <Button onClick={this.onChallengeClick}>
+                     {this.state.chform ? `Cancel Challenge` : `Challenge`}
+                 </Button>
                 {this.renderRandomPlot()}
                 {this.state.chform ? <ChallengeForm/>: null}
             </div>

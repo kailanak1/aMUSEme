@@ -33,17 +33,14 @@ const CountdownTimer = () => {
         if(seconds < 10){
              seconds = `0${seconds}`
         }
-
         return `${minutes}:${seconds}`
     }
     
     return (
-    
         <React.Fragment>
-          
             <Title> 
-                {counter === 0 ? <TimesUp>Time's Up </TimesUp> : convertCounter()}</Title>
-         
+                {counter === 0 ? <TimesUp>Time's Up </TimesUp> : convertCounter()}
+            </Title>
         </React.Fragment>
     )
 }
