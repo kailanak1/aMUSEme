@@ -1,9 +1,5 @@
 import React from 'react' 
-import styled from 'styled-components'
-
-const Title = styled.h3`
-    padding: 8px; 
-`
+import {Title} from './Styles'
 function Landing(){
     return(
         <div>

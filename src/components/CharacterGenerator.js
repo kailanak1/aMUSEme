@@ -3,16 +3,15 @@ import Faker from 'faker'
 
 import styled from 'styled-components'
 
+import {Title} from './Styles'
+
 const Container = styled.div`
     margin: 8px;
     border: 1px solid lightgrey;
     border-radius: 2px;
     width: 550px;
 `
-const Title = styled.h3`
-    padding: 8px; 
 
-`
 const DetailList = styled.div`
     padding: 8px
 `
