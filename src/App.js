@@ -12,6 +12,7 @@ import NavBar from './components/NavBar'
 import Landing from './components/Landing'
 import Login from './components/Login'
 import RandomPlotGenerator from './components/RandomPlotGenerator';
+import Projects from './component/Project'
  
 class App extends Component {
   render() {
@@ -47,6 +48,12 @@ class App extends Component {
           exact
           path='/Login'
           component={Login}/>
+
+
+          <Route 
+          exact 
+          path='/Projects'
+          component={Project}/>
 
         </Switch>
         

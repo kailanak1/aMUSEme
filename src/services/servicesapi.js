@@ -36,3 +36,42 @@ const login = data => {
       body: JSON.stringify({user: data})
     }).then(res => { return res.json()});
 };
+
+
+const createProject = (data) => {
+    return fetch(`${API_ROOT}/new-project`, {
+        method: "POST",
+        headers: {      
+          "Content-Type": "application/json",
+          Accept: "application/json"
+          },
+        body: JSON.stringify({project: data})
+      }).then(res => { return res.json()});
+}
+
+const getProjects = () => {
+    return fetch(`${API_ROOT}/projects`, {
+        headers: headers()
+      }).then(res => {
+        return res.json();
+      });
+}
+
+const createStory = (data) => {
+    return fetch(`${API_ROOT}/new-story`, {
+        method: "POST",
+        headers: {      
+          "Content-Type": "application/json",
+          Accept: "application/json"
+          },
+        body: JSON.stringify({story: data})
+      }).then(res => { return res.json()});
+}
+
+const getStories = () => {
+    return fetch(`${API_ROOT}/stories`, {
+        headers: headers()
+      }).then(res => {
+        return res.json();
+      });
+}
